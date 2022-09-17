@@ -1,5 +1,5 @@
 // Set the date we're counting down to
-const exp = new Date("9/17/2022 12:30:00").getTime();
+const exp = new Date("9/17/2022 19:30:00").getTime();
 
 randColor = () => `rgba(${Math.floor(Math.random() * 200)},${Math.floor(Math.random() * 200)},${Math.floor(Math.random() * 200)},1.0)`
 
