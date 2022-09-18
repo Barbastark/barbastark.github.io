@@ -1,7 +1,17 @@
 // Set the date we're counting down to
-const exp = new Date("9/17/2022 19:30:00").getTime();
 
-randColor = () => `rgba(${Math.floor(Math.random() * 200)},${Math.floor(Math.random() * 200)},${Math.floor(Math.random() * 200)},1.0)`
+const _qa = q => document.querySelectorAll(q);
+const _q = q => document.querySelector(q);
+
+function randColor() {
+  return `
+    rgba(
+      ${Math.floor(Math.random() * 200)},
+      ${Math.floor(Math.random() * 200)},
+      ${Math.floor(Math.random() * 200)},
+      1.0)
+  `;
+} 
 
 function printArr(str, el, wait) {
   
@@ -9,6 +19,7 @@ function printArr(str, el, wait) {
   let i = 0;
    
   const interval = setInterval(() => {
+  
     const letter = document.createElement("span");
     letter.setAttribute("style", `color: ${randColor()};`)
     letter.classList.add(`hidden${i}`);
@@ -23,20 +34,33 @@ function printArr(str, el, wait) {
   }, wait);
 }
 
+function clearElements(identifier) {
+  
+  const nodes = _qa(identifier);
+  
+  for(let node of nodes) {
+    node.innerHTML = "";
+  }
+}
+
+function updateCountdown(expStr) {
+  const exp = new Date(expStr).getTime();
+  const now = new Date().getTime();
+  const timeLeft = exp - now;
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  return exp > 0 ? `${hours}t ${hours}t ${minutes}m ${seconds}s` : false;
+}
+
 const countdown = setInterval(function() {
 
-  const now = new Date().getTime();
+  const timeLeft = updateCountdown("9/17/2022 12:30:00");
+  _q(".countdown").innerHTML = timeLeft;
 
-  const delay = exp - now;
-
-  const days = Math.floor(delay / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((delay % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((delay % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((delay % (1000 * 60)) / 1000);
-
-  document.querySelector(".countdown").innerHTML = `${hours}t ${minutes}m ${seconds}s`;
-
-  if (delay < 0) {
+  if (timeLeft) {
     
     clearInterval(countdown);
     
@@ -49,10 +73,8 @@ const countdown = setInterval(function() {
       setTimeout(() => {
         printArr("70-års dagen", ".span-three", 500);
         setTimeout(() => {
-         document.querySelector(".span-one").innerHTML = ""     
-         document.querySelector(".span-two").innerHTML = ""     
-         document.querySelector(".span-three").innerHTML = ""
-         
+          clearElements('[class*="span"]'); 
+          
          setTimeout(() => {
           printArr("För att du ska få fason på den här...", ".span-one", 500)
           setTimeout(() => {
