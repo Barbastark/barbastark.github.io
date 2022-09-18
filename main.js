@@ -60,43 +60,79 @@ const countdown = setInterval(function() {
   const timeLeft = updateCountdown("9/17/2022 12:30:00");
   _q(".countdown").innerHTML = timeLeft;
 
-  if (timeLeft) {
+  if(timeLeft) {
     
     clearInterval(countdown);
     
-    document.querySelector(".countdown-container").setAttribute("style", "display: none;");
-    
-    printArr("Stort Grattis", ".span-one", 500);
+    _q(".countdown-container").setAttribute("style", "display: none;");
+    const str = "Stort Grattis";
+    let timeout = str.length * 100 + 1000;
+    printArr(str, ".span-one", 100);
     
     setTimeout(() => {
-      printArr("på", ".span-two", 500);
+      let str = "på";
+      let timeout = str.length * 100 + 1000;
+      printArr(str, ".span-two", 100);
+      
       setTimeout(() => {
-        printArr("70-års dagen", ".span-three", 500);
+        let str = "70-års dagen";
+        let timeout = str.length * 100 + 1000;
+        printArr(str, ".span-three", 100);
+        
         setTimeout(() => {
           clearElements('[class*="span"]'); 
           
-         setTimeout(() => {
-          printArr("För att du ska få fason på den här...", ".span-one", 500)
+          setTimeout(() => {
+            let str = "För att du ska få fason på den här...";
+            let timeout = str.length * 100 + 1000;
+          
+            printArr(str, ".span-one", 100)
+          
           setTimeout(() => {
             document.querySelector(".span-one").innerHTML = ""
             let i = 5;
+            
             const interval = setInterval(() => {
               document.querySelector(".span-one").innerText = `Detonation in ${i} seconds.`
+              
               if(i === 0) {
                 document.querySelector(".span-one").innerHTML = ""
-                clearInterval(interval)
                 document.querySelector(".morris").setAttribute("src", "./morris.jpg")
+                
+                clearInterval(interval)
+                
                 setTimeout(() => {
                   document.querySelector(".morris").setAttribute("src", "")
-                  printArr("Har vi bestämt att du i egenskap av älskad far, morfar och svärfar ska få en hundkurs!! :)", ".span-one", 500)
-                }, 5000)
+                  let str = "Har vi bestämt att du i egenskap av älskad far, morfar och svärfar ska få en hundkurs!! :)";
+                  let timeout = str.length * 100 + 1000;
+                  printArr(str, ".span-one", 100);
+                
+                  setTimeout(() => {
+                    const letters = _qa('[class*="hidden"]');
+                    let i = 0;
+
+                    const clearPage = setInterval(() => {
+                      letters[i].classList.add("leave");
+                      
+                      //setTimeout(() => {
+                      //  letters[i].setAttribute("style", "opacity: 0;");
+                      //}, 100)
+                      
+                      if(i === letters.length - 1) {
+                        clearInterval(clearPage);
+                      }
+                      i++;
+                    }, 100);
+
+                  }, timeout)
+                }, 2000)
               }
               i--;
             },1000)
-          }, 20000) 
-        }, 500)
-        },8000)
-      }, 2000)
-    }, 7000)
+          }, timeout) 
+        }, 250)
+        },timeout)
+      }, timeout)
+    }, timeout)
   }
 },1000)

@@ -15,7 +15,11 @@
 }
 
 [class*="hidden"] {
-  animation: fadeIn 1s;
+  animation: fadeIn .5s;
+  font-size: 14vw;
+}
+
+.span-one {
   font-size: 14vw;
 }
 
@@ -50,6 +54,23 @@
 
 [class*="span"] {
   display: block;
+}
+
+@keyframes leave {
+  0% {
+    top: 0;
+
+  }
+
+  100% {
+    top: 100vh;
+
+  }
+}
+
+.leave {
+  position: relative;
+  animation: leave .5s;
 }
 
 .morris {
