@@ -1,0 +1,197 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Background */
+
+body {
+  background-color: #08090A;
+}
+
+#universe {
+  z-index: 1;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#galaxy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(75deg);
+  transform-style: preserve-3d;
+}
+
+#sun,
+.planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+
+  transform-style: preserve-3d;
+}
+
+#sun {
+  background-color: #FB7209;
+  box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+  transform: rotateX(-75deg);
+  background: radial-gradient(circle at 1.3vh 1.3vh, #FB7209, #000);
+}
+
+.pos {
+  position: absolute;
+  transform-style: preserve-3d;
+  animation-name: invert;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.planet {
+  background: url(../earth.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation-name: orbit;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-style: preserve-3d;
+}
+
+/* Animations */
+@keyframes rotate {
+  100% {
+    background-position: 100%;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes invert {
+  0% {
+    transform: rotateX(-90deg) rotateY(360deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+  }
+}
+
+/* Orbit sizes */
+#earth.orbit {
+  width: 12em;
+  height: 12em;
+  margin-top: -6em;
+  margin-left: -6em;
+}
+
+/* Planet starting positions */
+#earth .pos {
+  left: 50%;
+  top: -1px;
+  gborder: solid 3px red;
+}
+
+/* Planet animation durations */
+#earth.orbit,
+#earth .pos {
+  animation-duration: 10s;
+}
+
+/* Planet sizes */
+#sun {
+  font-size: 24em;
+}
+
+#earth {
+  font-size: 8em;
+}
+
+/* Planet shadow animations */
+#earth .planet {
+  animation: shadow-earth;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-style: preserve-3d;
+  animation-duration: 10s;
+}
+
+
+
+
+#surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+@keyframes shadow-earth {
+  0% {
+    background-color: rgba(0, 0, 0, 0.0);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+    background-position: 50%;
+    /* TOP */
+  }
+
+  10% {}
+
+  25% {
+    box-shadow: inset 32px 0 16px rgba(0, 0, 0, 0.5);
+
+    /* LEFT */
+  }
+
+  50% {
+    background-color: rgba(0, 0, 0, 1.0);
+    box-shadow: inset 80px 40px 60px rgba(0, 0, 0, 1.0);
+    background-position: 100%;
+    /* BOTTOM */
+  }
+
+  50.01% {
+    box-shadow: inset -80px 80px 60px rgba(0, 0, 0, 1.0);
+    background-position: 0%;
+    /* BOTTOM */
+  }
+
+  75% {
+
+    box-shadow: inset -32px 0 16px rgba(0, 0, 0, 0.5);
+    /* RIGHT */
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.0);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+    background-position: 50%;
+    /* TOP */
+  }
+}
