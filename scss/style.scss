@@ -1,0 +1,178 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+html {
+  font-size: 16px;
+}
+
+/* Background */
+
+body {
+  background-color: #08090A;
+}
+
+#universe {
+  z-index: 1;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#galaxy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(78deg);
+  transform-style: preserve-3d;
+}
+
+#sun,
+.planet,
+.surface {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+#sun {
+  background-color: #FB7209;
+  box-shadow: 0 0 60px rgba(255, 160, 60, 0.4);
+  transform: rotateX(-75deg);
+  background: radial-gradient(circle at 1.3vh 1.3vh, #FB7209, #000);
+}
+
+.pos {
+  position: absolute;
+  transform-style: preserve-3d;
+  animation-name: invert;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  gborder: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation-name: orbit;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-style: preserve-3d;
+}
+
+/* Orbit sizes */
+#earth.orbit {
+  width: 12em;
+  height: 12em;
+  margin-top: -6em;
+  margin-left: -6em;
+}
+
+/* Planet starting positions */
+#earth .pos {
+  left: 50%;
+  top: -1px;
+}
+
+/* Planet animation durations */
+#earth.orbit,
+#earth .pos {
+  animation-duration: 10s;
+}
+
+/* Planet sizes */
+#sun {
+  font-size: 24em;
+}
+
+#earth {
+  font-size: 8em;
+}
+
+/* Planet shadow animations */
+#earth .planet {
+  animation: shadow-earth 10s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.surface {
+  background: url(../mars.png);
+  background-size: cover;
+  background-repeat: repeat-x;
+  animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -2em 0;
+  }
+}
+
+@keyframes shadow-earth {
+  0% {
+    background-color: rgba(255, 0, 0, 0.0);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  25% {
+    box-shadow: inset 32px 0 16px rgba(0, 0, 0, 0.5);
+  }
+
+  50% {
+    background-color: rgba(0, 0, 0, 0.98);
+    box-shadow: inset 80px 40px 60px rgba(0, 0, 0, 1.0);
+  }
+
+  50.01% {
+    background-color: rgba(0, 0, 0, 1.0);
+    box-shadow: inset -80px 80px 60px rgba(0, 0, 0, 1.0);
+  }
+
+  75% {
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: inset -32px 0 16px rgba(0, 0, 0, 0.5);
+  }
+
+  100% {
+    background-color: rgba(255, 0, 0, 0.0);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes invert {
+  0% {
+    transform: rotateX(-90deg) rotateY(360deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+  }
+}
