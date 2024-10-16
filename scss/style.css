@@ -115,7 +115,7 @@ body {
 }
 
 .surface {
-  background: url(../mars.png);
+  background: url(../earth2.jpg);
   background-size: cover;
   background-repeat: repeat-x;
   -webkit-animation: rotate 1.5s linear infinite;
